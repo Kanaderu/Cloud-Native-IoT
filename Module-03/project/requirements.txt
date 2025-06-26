@@ -1,1 +1,7 @@
 django==5.2.3
+django-filter
+django-oauth-toolkit
+djangorestframework
+djangorestframework-simplejwt[crypto]
+graphene-django
+markdown

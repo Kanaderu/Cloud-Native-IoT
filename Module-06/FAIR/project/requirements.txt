@@ -1,0 +1,3 @@
+pytorch>=1.10.0
+pyarrow
+git+https://github.com/pytorch/fairseq

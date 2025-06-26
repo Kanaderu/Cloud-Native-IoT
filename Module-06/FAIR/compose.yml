@@ -1,0 +1,4 @@
+services:
+  fair:
+    build: ./
+    image: fair:0.0.0

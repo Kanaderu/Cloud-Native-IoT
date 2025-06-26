@@ -12,3 +12,10 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+  webui-ollama:
+    image: ghcr.io/open-webui/open-webui:v0.6.15
+    volumes:
+      - ./webui:/app/backend/data
+    ports:
+      - 3000:8080
+      # --add-host=host.docker.internal:host-gateway
