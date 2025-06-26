@@ -1,0 +1,7 @@
+services:
+  webserver:
+    build: ./
+    image: webserver:0.0
+    working_dir: /project
+    volumes:
+      - ./project:/project
