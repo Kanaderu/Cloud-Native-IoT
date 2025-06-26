@@ -1,0 +1,6 @@
+services:
+  ros-master:
+    image: osrf/ros:jazzy-desktop-full
+  
+  gazebo:
+    image: gazebo:gzserver11-focal
