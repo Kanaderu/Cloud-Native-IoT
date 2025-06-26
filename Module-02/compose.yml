@@ -1,0 +1,9 @@
+services:
+  idf:
+    image: espressif/idf:v5.4.2
+    working_dir: /project
+    user: 0:0
+    environment:
+      - HOME=/tmp
+    volumes:
+      - ./project:/project
