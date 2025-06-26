@@ -4,3 +4,6 @@ services:
   
   gazebo:
     image: gazebo:gzserver11-focal
+
+  # ardupilot:
+  #   image: ardupilot/ardupilot-dev-ros
