@@ -1,0 +1,23 @@
+services:
+  influxdb:
+    image: influxdb:3.2.0-core
+    ports:
+      - 8086:8086
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb3
+      - ./influxdb/config:/etc/influxdb3
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=<USERNAME>
+      - DOCKER_INFLUXDB_INIT_PASSWORD=<PASSWORD>
+      - DOCKER_INFLUXDB_INIT_ORG=<ORG_NAME>
+      - DOCKER_INFLUXDB_INIT_BUCKET=<BUCKET_NAME>
+  grafana:
+    image: grafana/grafana:12.0.2-ubuntu
+    environment:
+    #  - GF_SERVER_ROOT_URL=http://my.grafana.server/
+     - GF_PLUGINS_PREINSTALL=grafana-clock-panel
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana

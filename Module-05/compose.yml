@@ -1,0 +1,4 @@
+services:
+  data-science-stack:
+    build: ./
+    image: data-science-stack:0.0
