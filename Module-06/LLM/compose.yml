@@ -5,3 +5,10 @@ services:
       - 11434:1143
     volumes:
       - ./ollama:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
