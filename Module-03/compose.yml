@@ -3,5 +3,8 @@ services:
     build: ./
     image: webserver:0.0
     working_dir: /project
+    ports:
+      - 8000:8000
     volumes:
       - ./project:/project
+    command: python manage.py runserver 0.0.0.0:8000
