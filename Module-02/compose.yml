@@ -2,7 +2,9 @@ services:
   idf:
     image: espressif/idf:v5.4.2
     working_dir: /project
-    user: 0:0
+    # run as root, default is uid 1000
+    # user: 0:0
+    user: 1000:1000
     environment:
       - HOME=/tmp
     volumes:
