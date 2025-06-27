@@ -1,0 +1,3 @@
+services:
+  react-native-android:
+    image: reactnativecommunity/react-native-android:v18.0

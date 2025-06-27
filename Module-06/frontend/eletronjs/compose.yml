@@ -1,0 +1,5 @@
+services:
+  electronjs:
+    build: ./dockerfiles
+    volumes:
+      - ./project:/app
