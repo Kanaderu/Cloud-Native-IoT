@@ -3,6 +3,7 @@ fiftyone-brain
 fiftyone-db
 influxdb-client
 jax
+mlflow
 ollama
 onnx
 openvino
