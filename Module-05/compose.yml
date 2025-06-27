@@ -2,6 +2,17 @@ services:
   data-science-stack:
     build: ./
     image: data-science-stack:0.0
+    working_dir: /project
+    environment:
+      - JUPYTER_PORT=8888
+      - DOCKER_STACKS_JUPYTER_CMD=lab
+      # - NOTEBOOK_ARGS=--ip 0.0.0.0
+    volumes:
+      - ./config/jupyter_lab_config.py:/home/jovyan/.jupyter/jupyter_lab_config.py:ro
+      - ./config/jupyter_server_config.py:/home/jovyan/.jupyter/jupyter_server_config.py:ro
+      - ./project:/project
+    ports:
+      - 8888:8888
     deploy:
       resources:
         reservations:
