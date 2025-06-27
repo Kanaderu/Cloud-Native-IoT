@@ -1,6 +1,6 @@
 services:
   data-science-stack:
-    build: ./
+    build: ./dockerfiles
     image: data-science-stack:0.0
     working_dir: /project
     environment:

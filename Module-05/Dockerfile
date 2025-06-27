@@ -1,1 +1,0 @@
-FROM quay.io/jupyter/tensorflow-notebook:hub-5.3.0
