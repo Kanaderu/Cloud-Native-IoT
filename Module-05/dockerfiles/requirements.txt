@@ -2,10 +2,16 @@ fiftyone
 fiftyone-brain
 fiftyone-db
 influxdb-client
+jax
+ollama
+onnx
+openvino
+openvino-tokenizers[transformers]
 plotly
 psutil
 tensorflow
 tensorflow-datasets
 torch
 torchvision
+transformers[all]
 umap-learn
