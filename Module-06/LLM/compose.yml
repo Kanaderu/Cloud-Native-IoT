@@ -2,7 +2,7 @@ services:
   ollama:
     image: ollama/ollama:0.9.3-rocm
     ports:
-      - 11434:1143
+      - 11434:11434
     volumes:
       - ./ollama:/root/.ollama
     deploy:
@@ -17,5 +17,7 @@ services:
     volumes:
       - ./webui:/app/backend/data
     ports:
-      - 3000:8080
-      # --add-host=host.docker.internal:host-gateway
+      - 8080:8080
+    # extra_hosts:
+    #   - host.docker.internal:host-gateway #docker
+    #   - host.containers.internal:host-gateway #podman
