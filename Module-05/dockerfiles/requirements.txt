@@ -1,0 +1,11 @@
+fiftyone
+fiftyone-brain
+fiftyone-db
+influxdb-client
+plotly
+psutil
+tensorflow
+tensorflow-datasets
+torch
+torchvision
+umap-learn
