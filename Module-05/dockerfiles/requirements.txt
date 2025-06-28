@@ -41,3 +41,9 @@ pre-commit
 ftfy
 gdown
 regex
+
+# Stable baselines
+
+sb3-contrib
+sbx-rl
+stable-baselines3[extra]
