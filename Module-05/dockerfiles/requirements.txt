@@ -5,15 +5,39 @@ fiftyone-db
 influxdb-client
 jax
 mlflow
+networkx
 ollama
-onnx
+opencv-python
 openvino
+openvino-dev
 openvino-tokenizers[transformers]
 plotly
 psutil
+ray[data,train,tune,serve]
 tensorflow
 tensorflow-datasets
 torch
 torchvision
-transformers[all]
+# transformers[all]
+transformers
+ultralytics
 umap-learn
+yacs
+
+# Export ----------------------------------------------------------------------
+
+onnx                  # ONNX export
+onnxsim               # ONNX simplifier
+nvidia-pyindex        # TensorRT export
+nvidia-tensorrt       # TensorRT export
+openvino-dev          # OpenVINO export
+onnx2tf               # TFLite export
+
+kaleido
+joblib
+optuna
+
+pre-commit
+ftfy
+gdown
+regex
