@@ -7,15 +7,25 @@ Welcome to the Cloud Native IoT page! The content here provides instructional de
 Topic Outline
 =============
 
-The following topics are covered here:
+The following topics are covered here:_
 
-+------------------------+------------+-----------+
-| Header row, column 1   | Header 2   | Header 3  |
-+========================+============+===========+
-| body row 1, column 1   | column 2   | column 3  |
-+------------------------+------------+-----------+
-| body row 2             | Cells may span columns |
-+------------------------+------------------------+
+
+.. list-table:: Module Topics
+   :widths: 25 75
+   :header-rows: 1
+
+   * - Topic
+     - Description
+   * - Containers
+     - 
+   * - IoT Devices
+     - Row 2, column 2
+   * - Web Services
+     - Row 2, column 2
+   * - Machine Learning
+     - Row 2, column 2
+   * - IoT Projects
+     - Row 2, column 2
 
 .. toctree::
    :maxdepth: 2
