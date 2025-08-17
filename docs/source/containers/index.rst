@@ -20,6 +20,8 @@ Docker defines several common objects which are fairly common among most contain
 Images
 ------
 
+Images are the
+
 Containers
 ----------
 
@@ -38,8 +40,9 @@ Referneces
 
 - Docker Guides https://docs.docker.com/guides/
 - Docker Manuals https://docs.docker.com/manuals/
-- Open Container Initiative https://opencontainers.org/
+- Open Container Initiative (OCI) https://opencontainers.org/
 - OCI Spec https://github.com/opencontainers/image-spec
 - Kubernetes https://kubernetes.io/
 - Podman https://podman.io/
 - Apptainer https://apptainer.org/
+- Dev Containers https://containers.dev/

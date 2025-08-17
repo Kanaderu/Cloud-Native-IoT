@@ -1,6 +1,7 @@
 services:
   idf:
     image: espressif/idf:v5.4.2
+    #image: espressif/idf:v5.5
     working_dir: /project
     # run as root, default is uid 1000
     # user: 0:0
