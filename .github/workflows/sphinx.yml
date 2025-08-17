@@ -33,4 +33,3 @@ jobs:
         uses: sphinx-notes/pages@3.4
         with:
           documentation_path: ./docs
-          requirements_path: ./docs/requirements.txt
