@@ -36,7 +36,7 @@ jobs:
         with:
           docs-folder: docs/
           build-command: make html
-          #pre-build-command: # optional     
+          pre-build-command: pip install -U Jinja2
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
