@@ -1,12 +1,17 @@
 services:
   idf:
-    image: espressif/idf:v5.4.2
-    #image: espressif/idf:v5.5
+    # image: espressif/idf:v5.4.2
+    image: espressif/idf:v5.5
+    container_name: idf
+    hostname: idf
     working_dir: /project
     # run as root, default is uid 1000
-    # user: 0:0
-    user: 1000:1000
+    user: 0:0
+    # user: 1000:1000
     environment:
       - HOME=/tmp
     volumes:
       - ./project:/project
+    device:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    network_mode: host
