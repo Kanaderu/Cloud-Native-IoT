@@ -11,6 +11,9 @@ dependencies = [
     "tox>=4.28.4",
 ]
 
+[tool.setuptools]
+py-modules = []
+
 [tool.tox]
 requires = ["tox>=4.19"]
 env_list = ["3.13", "3.12", "type"]
