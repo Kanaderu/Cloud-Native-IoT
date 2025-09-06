@@ -2,7 +2,11 @@
 Networking
 ##########
 
-Networking allows for communication from one application to another which may exist on different machines. The Open Systems Interconnection (OSI model) is commonly used to describe networking communication between applications. As data is transmitted through the layers of the OSI model, metadata is added to aid in the segmentation, transmission, and reconstruction of the data packets.
+Networking allows for communication from one application to another which may exist on different machines. The Open Systems Interconnection (OSI) Model is commonly used to describe networking communication between applications. As data is transmitted through the layers of the OSI model, metadata is added to aid in the segmentation, transmission, and reconstruction of the data packets.
+
+----------------------------------------
+Open Systems Interconnection (OSI) Model 
+----------------------------------------
 
 .. figure:: assets/osi-layers.png
     :alt: OSI Model Layers
