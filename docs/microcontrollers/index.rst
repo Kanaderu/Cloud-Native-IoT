@@ -15,7 +15,7 @@ The AWS M5Stack ESP32 is the device used as an example here for developing on a 
 M5Stack Datasheet
 -----------------
 
-.. image:: /assets/microcontrollers/CORE2_V1.0_SCH_page_01.png
+.. image:: assets/m5stack/CORE2_V1.0_SCH_page_01.png
    :alt: AWS IoT Core 2 Schematics
    :align: center
 
