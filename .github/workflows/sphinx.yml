@@ -22,14 +22,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
+  pages:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
       - name: Sphinx to GitHub Pages
+        id: deployment
         uses: sphinx-notes/pages@3.4
         with:
           documentation_path: ./docs
