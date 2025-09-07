@@ -28,15 +28,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-      - name: Install dependencies
-        run: |
-          pip install -r docs/
-      - name: Sphinx build
-        run: |
-          cd docs && make html
-      - uses: peaceiris/actions-gh-pages@v3
+      - name: Sphinx to GitHub Pages
+        id: deployment
+        uses: sphinx-notes/pages@3.4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/build/html
+          documentation_path: ./docs
