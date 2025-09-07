@@ -24,12 +24,24 @@ concurrency:
 jobs:
   pages:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: write
     steps:
-      - name: Sphinx to GitHub Pages
-        id: deployment
-        uses: sphinx-notes/pages@3.4
-        with:
-          documentation_path: ./docs
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - name: Build HTML
+      uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "docs/"
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: html-docs
+        path: docs/build/html/
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/build/html
