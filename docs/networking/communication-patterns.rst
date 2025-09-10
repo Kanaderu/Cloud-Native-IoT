@@ -9,7 +9,7 @@ Sampling data rates in conjunction with communication patterns is an important c
 Data loss is also an important consideration in determining the appropriate communication pattern. Working in the trade-offs between TCP and UDP protocols can help balance appropriate data loss, as TCP provides reliable data transfer while UDP is faster but less reliable.
 
 Request-Reply Pattern
-#####################
+=====================
 
 The request-reply pattern is a synchronous communication pattern where a client sends a request to a server and waits for a response. This pattern is commonly used in web applications, where a client sends an HTTP request to a server and waits for an HTTP response.
 
