@@ -2,6 +2,12 @@
 Networking
 ##########
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+    communication-patterns
+
 Networking allows for communication from one application to another which may exist on different machines. The Open Systems Interconnection (OSI) Model is commonly used to describe networking communication between applications. As data is transmitted through the layers of the OSI model, metadata is added to aid in the segmentation, transmission, and reconstruction of the data packets.
 
 ----------------------------------------
