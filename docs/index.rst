@@ -31,10 +31,7 @@ The following topics are covered here:_
    :maxdepth: 2
    :caption: Topics:
    
-   containers/index
-   microcontrollers/index
-   networking/index
-
+   notes/index
 
 Contact Details
 """""""""""""""

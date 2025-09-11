@@ -40,5 +40,21 @@ html_theme_options = {
         "text": "Cloud Native IoT",
         # "image_light": "_static/logo-light.png",
         # "image_dark": "_static/logo-dark.png",
-    }
+    },
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/Kanaderu/Cloud-Native-IoT",
+            "icon": "fa-brands fa-square-github",
+            "type": "fontawesome",
+        }
+   ],
+   "navbar_start": ["navbar-logo"],
+   "navbar_center": ["navbar-nav"],
+   "navbar_end": ["navbar-icon-links"],
+   "navbar_persistent": ["search-button"]
+}
+
+html_sidebars = {
+    "**": ["sidebar-nav-bs"]
 }
