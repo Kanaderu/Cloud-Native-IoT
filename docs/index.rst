@@ -32,6 +32,7 @@ The following topics are covered here:_
    :caption: Topics:
    
    notes/index
+   labs/index
 
 Contact Details
 """""""""""""""
