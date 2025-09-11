@@ -2,6 +2,14 @@
 Cloud Native IoT
 ################
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Topics:
+   
+   notes/index
+   labs/index
+
 Welcome to the Cloud Native IoT page! The content here provides instructional details of various modules broken down into separate topics that describe each area in depth.
 
 Topic Outline
@@ -26,13 +34,6 @@ The following topics are covered here:_
      - Row 2, column 2
    * - IoT Projects
      - Row 2, column 2
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Topics:
-   
-   notes/index
-   labs/index
 
 Contact Details
 """""""""""""""
