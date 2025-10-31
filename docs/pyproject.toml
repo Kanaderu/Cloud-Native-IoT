@@ -10,6 +10,11 @@ dependencies = [
     "sphinx-book-theme>=1.1.4",
     "tox>=4.28.4",
     "myst-nb",
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "plotly",
+    "seaborn",
 ]
 
 [tool.setuptools]

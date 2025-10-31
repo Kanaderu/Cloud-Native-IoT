@@ -9,4 +9,4 @@ IoT Notes
    containers/index
    microcontrollers/index
    networking/index
-   data-management/index
+   machine-learning/index
