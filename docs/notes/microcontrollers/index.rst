@@ -25,7 +25,7 @@ M5Stack Datasheet
    :alt: AWS IoT Core 2 Schematics
    :align: center
 
-Referneces
+References
 ^^^^^^^^^^
 
 - M5Stack Documentation https://docs.m5stack.com/ 
