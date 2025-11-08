@@ -6,6 +6,7 @@ IoT Notes
    :maxdepth: 2
    :caption: Topics:
    
+   basics/index
    containers/index
    microcontrollers/index
    networking/index
