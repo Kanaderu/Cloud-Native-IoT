@@ -15,6 +15,7 @@ dependencies = [
     "matplotlib",
     "plotly",
     "seaborn",
+    "sphinx-tabs>=3.4.7",
 ]
 
 [tool.setuptools]

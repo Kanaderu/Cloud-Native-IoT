@@ -15,6 +15,7 @@ author = 'David Fan'
 
 extensions = [
     "myst_nb",
+    "sphinx_tabs.tabs",
 ]
 
 templates_path = ['_templates']
