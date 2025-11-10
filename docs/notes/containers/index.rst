@@ -56,7 +56,7 @@ References
 ^^^^^^^^^^
 
 - Docker Guides https://docs.docker.com/guides/
-- Docker Manuals https://docs.docker.com/manuals/
+- Docker Reference Manuals https://docs.docker.com/manuals/
 - Open Container Initiative (OCI) https://opencontainers.org/
 - OCI Spec https://github.com/opencontainers/image-spec
 - Kubernetes https://kubernetes.io/
