@@ -235,7 +235,7 @@ The ``docker run`` command is particularly important to look at as it follows as
 Building an Image/Container
 ===========================
 
-Building an image is done by writing a ``Dockerfile`` (or ``Containerfile`` for podman) which contains a simple set of instructions on commands that are executed in order when building an image. An image is built using layers that build upon previous layers to ultimately form a final image. Images always start from a base image and build ontop of it. Base images can include the bare OS such as alpine, debian, ubuntu, fedora, and others where dependencies and configuration files can be added/modified to meet the requirements for the resulting application intended for the image to be used as a container.
+Building an image is done by writing a ``Dockerfile`` (or ``Containerfile`` for podman) which contains a simple set of directives on commands that are executed in order when building an image. An image is built using layers that build upon previous layers to ultimately form a final image. Images always start from a base image and build ontop of it. Base images can include the bare OS such as alpine, debian, ubuntu, fedora, and others where dependencies and configuration files can be added/modified to meet the requirements for the resulting application intended for the image to be used as a container.
 
 Building an image can be done using various tools, docker and podman enable various backend OCI image building tools to make the build process easier to use.
 
@@ -261,6 +261,73 @@ Building an image can be done using various tools, docker and podman enable vari
     ENTRYPOINT /bin/bash
 
 When building an image, a build context is used which is a folder workspace that is initially copied over into the build process and then used for compiliation of an image. The context usually contains the ``Dockerfile`` at the root directory of the build context and compiles layers similar to a Makefile where layers are cached and reused if they aren't modified in subsequent rebuilds of the image. The caching capability is useful when debugging and constructing an image, saving time and avoids re-downloading/computing lines that were previously executed. Refer to the `Docker Building Best Practices <https://docs.docker.com/build/building/best-practices/>`_ for optimizations and suggestions when building images.
+
+The main reference for Dockerfile syntax are in the `Docker's Dockerfile Reference <https://docs.docker.com/reference/dockerfile/>`_ page which highlights the various options that can be used when building images. The main important directives for writing Dockerfiles are ``FROM``, ``RUN``, ``COPY``, ``ENTRYPOINT``, ``RUN``, and ``WORKDIR`` which are briefly described below.
+
+.. list-table:: ``Dockerfile`` Reference
+   :header-rows: 1
+
+   * - Directive
+     - Description
+   * - ``FROM [--platform=<platform>] <image> [AS <name>]``
+     - The initial base image to build ontop of
+   * - ``RUN [OPTIONS] <command>``
+     - Execute any commands to create a new layer on top of the current image
+   * - ``COPY [OPTIONS] <src> ... <dest>``
+     - Copy file(s) from the context directory to a destination within the image
+   * - ``ARG <name>[=<default value>] [<name>[=<default value>]...]``
+     - Environment variables that exist during build time and can be set during the build process with default values
+   * - ``ENV <key>=<value> [<key>=<value>...]``
+     - Environment variables to be set within the image (build time and run time)
+   * - ``CMD ["executable","param1","param2"]``
+     - The command to be executed when running a container from an image
+   * - ``ENTRYPOINT ["executable", "param1", "param2"]``
+     - The default command to always be executed when running a container from an image - prepends ``CMD``
+   * - ``WORKDIR /path/to/workdir``
+     - Set the working directory for any directives after
+   * - ``HEALTHCHECK [OPTIONS] CMD command``
+     - Healthcheck command to test a container to check and inform Docker that it's still working
+   * - ``USER <user>[:<group>]``
+     - The UID:GID to assign to the user within the container
+
+.. admonition:: ``ENTRYPOINT`` vs ``CMD``
+    
+    The ``ENTRYPOINT`` and ``CMD`` directives both define command(s) to be executed when the container is ran from an image. However there are subtle differences which are useful to know when running prebuilt images. Notably, when containers are ran, they are executed as ``ENTRYPOINT CMD`` where the ``ENTRYPOINT`` command prepends the ``CMD`` command. For example, with the python image, overriding the ``ENTRYPOINT`` and ``CMD`` in ``docker run``.
+
+    .. code-block:: bash
+        :caption: ``ENTRYPOINT`` vs ``CMD`` usage
+        :linenos:
+
+        # the default CMD in the python image is to run `python3` and an empty ENTRYPOINT
+        docker run --rm -it python:3.14.0-alpine
+
+        # override the default CMD with `sh`
+        docker run --rm -it python:3.14.0-alpine sh
+
+        # override the default CMD with `python3 -m pip list`
+        docker run --rm -it python:3.14.0-alpine python3 -m pip list
+
+        # override the default ENTRYPOINT with `python3` and the CMD with `-m pip list`
+        docker run --rm -it --entrypoint 'python3' python:3.14.0-alpine -m pip list
+
+    By setting the ``ENTRYPOINT`` a default prepended command can be set to supply arguments directory into an application.
+    
+    In some image building practices, the entrypoint is sometimes a shell (``sh``) script that sets up the environment and then runs the ``exec`` (`bash exec <https://www.gnu.org/software/bash/manual/bash.html#index-exec>`_) command to replace the current process with the ``CMD`` command.
+
+    .. code-block:: bash
+        :caption: Entrypoint script example
+        :linenos:
+
+        #!/bin/sh
+        set -e
+
+        # Perform setup tasks here
+        echo "Running entrypoint setup..."
+        # Example: create a directory
+        mkdir -p /app/data
+
+        # Execute the main command passed via CMD or docker run
+        exec "$@"
 
 References
 ^^^^^^^^^^
