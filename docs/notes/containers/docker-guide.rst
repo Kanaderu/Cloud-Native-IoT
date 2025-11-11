@@ -31,7 +31,7 @@ The docker architecture follows a server/client model in which a daemon is ran a
     Docker Architecture
 
 .. note::
-    Podman is daemon-less by design which does not rely upon a daemon. The daemon-less nature of podman is due to the ability to run containers at the root level (as opposed to docker which runs the daemon as root) which possess a security risk to allow containers to operate as root. Podman does, however, allow communication over a socket
+    Podman is daemon-less by design which does not rely upon a server/client model as does with docker. The daemon-less nature of podman is due to the ability to run containers at the root level (as opposed to docker which runs the daemon as root) which possess a security risk to allow containers to operate as root. Podman does, however, allow communication over a socket for compatability with docker.
 
 Running a Container
 ===================
