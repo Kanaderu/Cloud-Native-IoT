@@ -329,6 +329,44 @@ The main reference for Dockerfile syntax are in the `Docker's Dockerfile Referen
         # Execute the main command passed via CMD or docker run
         exec "$@"
 
+Building the Build Context
+--------------------------
+
+Once a folder with a build context is completed the image can be built using the ``docker build CONTEXT_DIR`` command. Several additional arguments can be passed to the builder which can be referenced at the `Docker Build Documentation <https://docs.docker.com/reference/cli/docker/buildx/build/>`_ which includes passing ``--build-arg`` to replace ``ARG`` variables and ``-t IMAGE:TAG`` to tag the image with a name and tag.
+
+.. code-block:: bash
+    :caption: Build a docker image
+
+    # create directory to hold build context
+    mkdir my-image-context/
+
+    # write to a `Dockerfile` at the root of the context
+    cat > my-image-context/Dockerfile << EOF
+    FROM python:3.14.0-bookworm
+
+    # install image/video processing libraries and remove the apt cache
+    RUN apt-get update -y && \
+        apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libjpeg-dev libpng-dev libtiff-dev \
+        && rm -rf /var/lib/apt/lists/*
+    
+    # install python packages
+    RUN pip install \
+          numpy \
+          opencv-python \
+          opencv-contrib-python \
+          pandas \
+          scikit-learn \
+          scipy
+
+    ENTRYPOINT /bin/bash
+    EOF
+
+    # build the image and name it `my-py-image:0.0.0`
+    docker build -t my-py-image:0.0.0 ./my-image-context/
+
+    # run the built image
+    docker run --rm -it my-py-image:0.0.0
+
 References
 ^^^^^^^^^^
 
