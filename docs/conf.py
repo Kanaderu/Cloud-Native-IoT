@@ -14,8 +14,16 @@ author = 'David Fan'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.doctest",
+    "sphinx.ext.extlinks",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.todo",
+    "sphinx.ext.viewcode",
+    
     "myst_nb",
     "sphinx_tabs.tabs",
+    "sphinx_copybutton",
 ]
 
 templates_path = ['_templates']

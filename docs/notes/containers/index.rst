@@ -54,6 +54,20 @@ Nodes
 
 Nodes define the host platform/system for which the containers are ran on. Nodes describe a more advanced topic around container orchestration in which multiple compute nodes contribute to running a set of containers. The use of orchestration provides scalability, redundancy, and management of allocating containers across multiple systems. The most common tools for orchestration are Docker Swarm, Kubernetes, and Hashicorp Nomad.
 
+-------------
+Orchestration
+-------------
+
+As containers begin to scale and communicate with one another, the complexity of managing them begin to increase. Scaling containers across multiple compute nodes/systems additionally adds another layer of complexity in managing and maintaining resources. The complexities that arise are addressed through the use of container orchestration which is heavily cenetered around the forerunner tool, Kubernetes. Other competing orchestration tools include Hashicorp's Nomad and Docker swarm which implement and apply similar concepts.
+
+Kubernetes Pods
+---------------
+
+The concept of a Kubernetes Pod is the use of multiple containers grouped together to represent a single container. The grouping of containers to create a sort of "higher level container" enables modular services to be grouped more easily together. An simple example can be a container that scrapes for data, another container that houses a web server, and a container for a database where all three containers can exist in a pod. The result is that each container views themselves (``localhost``) with the view of the pod where each container can communicate to each other as if they were they same system (despite building built from different images). More information on the concepts and use of pods can be found on `Kubernetes Pod Documentation <https://kubernetes.io/docs/concepts/workloads/pods/>`_ and `Redhat Pod Documentation <https://docs.redhat.com/en/documentation/openshift_container_platform/4.1/html/nodes/working-with-pods>`_.
+
+Docker Services and Stacks
+--------------------------
+
 References
 ^^^^^^^^^^
 
