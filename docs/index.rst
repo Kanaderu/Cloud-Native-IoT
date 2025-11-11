@@ -15,7 +15,7 @@ Welcome to the Cloud Native IoT page! The content here provides instructional de
 Topic Outline
 =============
 
-The following topics are covered here:_
+The following topics are covered here:
 
 
 .. list-table:: Module Topics

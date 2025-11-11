@@ -17,6 +17,7 @@ dependencies = [
     "seaborn",
     "sphinx-tabs>=3.4.7",
     "sphinx-copybutton>=0.5.2",
+    "jupyterlab>=4.4.10",
 ]
 
 [tool.setuptools]
