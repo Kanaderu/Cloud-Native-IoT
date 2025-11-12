@@ -394,4 +394,17 @@ As an example, a combination of the previous containers are defined and combined
     volumes:
       # create a named volume
       my-jupyter-data:
-      
+
+In the setup structure, all the services can be brought up using the following command:
+
+.. code-block:: bash
+    :caption: Start up docker services from compose
+
+    # start up all the service (CTRL-C to stop the containers)
+    docker compose up
+    
+    # start up all the service in the background
+    docker compose up -d
+
+    # tear down all the services
+    docker compose down
