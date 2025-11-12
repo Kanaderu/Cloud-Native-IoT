@@ -302,7 +302,7 @@ Docker compose commands are listed below.
 As an example, a combination of the previous containers are defined and combined together in a single compose file.
 
 .. code-block:: bash
-    :caption:
+    :caption: Populate files and proper folder structure
 
     ##### Create a docker context to build
     # create directory to hold build context
