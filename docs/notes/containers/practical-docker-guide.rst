@@ -226,6 +226,9 @@ Containers on the same network have unrestricted access to each other. Container
 .. note::
     Port mapping more specifically applies to bridge networks which creates explicit host/container communication. Port remapping is available regardless of the specific network the container is on.
 
+.. note::
+    Containers can be connected to multiple networks. Already running containers can be added to a container running ``docker network connect my-network container-3``
+
 ``none`` Network Driver
 -----------------------
 
@@ -272,3 +275,123 @@ Secrets
 ##############
 Docker Compose
 ##############
+
+Running docker commands with many arguments ends up being very tedious and lengthy to consistently type out. Docker configurations can be written in a compose file which is a YAML file that provides arguments for docker commands. Each argument and option for docker image, containers, volumes, networks, and other docker objects can defined in it's compose YAML file equivalent. A single compose file lists one or more containers listed as a services as well as create other associated objects.
+
+Compose file reference can be found here: https://docs.docker.com/reference/compose-file/ along with the descriptions to describe each docker object and their equivalent options. Features of the YAML specification can be leveraged when writing compose files too such as anchors and aliases. Compose files, by default are named ``docker-compose.yml`` (legacy) or ``compose.yml`` which are ran from a directory (similar to docker's image context).
+
+Docker compose commands are listed below.
+
+.. list-table:: Docker Compose Commands
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Command
+     - Description
+   * - ``docker compose pull``
+     - Pull the docker images from the defined listed services
+   * - ``docker compose build``
+     - Build the docker images from the defined listed services
+   * - ``docker compose up``
+     - Run the listed docker services and their options
+   * - ``docker compose down``
+     - Tear down the listed docker services
+   * - ``docker compose run SERVICE``
+     - Run a specific service from the compose file
+
+As an example, a combination of the previous containers are defined and combined together in a single compose file.
+
+.. code-block:: bash
+    :caption:
+
+    ##### Create a docker context to build
+    # create directory to hold build context
+    mkdir my-image-context/
+
+    # add example requirements to copy into image
+    cat > my-image-context/requirements.txt << EOF
+    jupyterlab
+    matplotlib
+    plotly
+    EOF
+
+    # write to a `Dockerfile` at the root of the context
+    cat > my-image-context/Dockerfile << EOF
+    FROM python:3.14.0-bookworm
+
+    # install image/video processing libraries and remove the apt cache
+    RUN apt-get update -y && \
+        apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libjpeg-dev libpng-dev libtiff-dev \
+        && rm -rf /var/lib/apt/lists/*
+    
+    # install python packages
+    RUN pip install \
+          numpy \
+          opencv-python \
+          opencv-contrib-python \
+          pandas \
+          scikit-learn \
+          scipy
+
+    # copy requirements.txt from the build context to /requirements.txt
+    COPY ./requirements.txt /requirements.txt
+
+    # install the python packages in the /requirements.txt file
+    RUN pip install -r /requirements.txt
+
+    ENTRYPOINT /bin/bash
+    EOF
+
+    #### Create a docker compose file to populate for later
+    touch compose.yml
+
+    # check the folder structure
+    tree
+
+.. code-block:: text
+    :caption: Sample Folder Structure/``tree`` Output
+
+    .
+    ├── compose.yml
+    └── my-image-context
+        ├── Dockerfile
+        └── requirements.txt
+
+.. code-block:: yaml
+    :caption: Sample ``compose.yml`` file
+
+    name: my-application
+    services:
+      # build custom image
+      my-python-app:
+        build: ./my-image-context
+        image: my-python-app
+        environment:
+         - PIP_PROGRESS_BAR=quiet
+        command: jupyter lab --ip 0.0.0.0 --port 8080
+        working_dir: /workspace
+        volumes:
+          - my-jupyter-data:/workspace
+        ports:
+          - 8080:8080
+        networks:
+          - my-network
+
+      # setup node-red image
+      node-red:
+        image: nodered/node-red:4.1-debian
+        ports:
+          - 1880:1880
+        volumes:
+          - ./data:/data
+        networks:
+          - my-network
+
+    networks:
+      # create a bridge network by default
+      my-network:
+
+    volumes:
+      # create a named volume
+      my-jupyter-data:
+      
