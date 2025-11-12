@@ -160,6 +160,110 @@ Making changes and restarting the container with the same volume mounts will the
 Networks
 ========
 
+Networking easily grows in complexity so, to start, several types will be covered initially - host, bridge, none, overlay, and macvlan. Docker networks are implemented as different drivers. Networking enables containers to connect and communicate with other containers as well as other services on the network. Docker, by default creates a bridge network which is visible when running ``docker network ls``. Containers that aren't explicitly attached to a network are automatically connected to the default bridge network and can communicate with other containers on the same network. The default network additionally has access to the outside internet from the host using masquerading.
+
+.. list-table:: Docker Network Drivers
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Driver
+     - Description
+   * - bridge
+     - Default network driver for enabling containers on the same bridge to communicate together, blocking outside communication on the network
+   * - host
+     - Use the host network without isolation
+   * - none
+     - Use no networks, making the container isolated
+   * - overlay
+     - Specific network for docker swarm orchestration for communication across nodes
+   * - ipvlan
+     - Connect containers to external VLANs
+   * - macvlan
+     - Containers treated as separate devices on the network
+
+``bridge`` Network Driver
+-------------------------
+
+The ``bridge`` network driver is the default network driver which defines a separate subnet for IPv4 and IPv6 access and attaches the container to the network with it's own IP address.
+
+.. todo:: add sample outputs
+
+.. code-block:: bash
+    :caption: Create a network and connect a container to it
+
+    # create a bridge network
+    docker network create my-network
+
+    # run a container attached to the created network with a name "container-1"
+    docker run --rm -it --network my-network --name container-1 python:3.14.0-alpine sh
+    
+    # //// START CONTAINER COMMANDS
+    # running in the container
+    ip a
+    # //// END CONTAINER COMMANDS
+
+In a separate terminal, start another container.
+
+.. code-block:: bash
+    :caption: Create a second container and connect it to the existing network
+
+    # run a container attached to the same network with a name "container-2"
+    docker run --rm -it --network my-network --name container-2 python:3.14.0-alpine sh
+    
+    # //// START CONTAINER COMMANDS
+    # running in the container
+    ip a
+    
+    # ping the first container to verify a valid response connection
+    ping container-1
+    # //// END CONTAINER COMMANDS
+
+Containers on the same network have unrestricted access to each other. Containers that are not on the same network won't be able to communicate with each other.
+
+.. note::
+    Containers on the bridge network have a modified DNS which can communicate with each other via the container's name or any hostname specified by ``--hostname``. The DNS on the docker network will resolve IPs for the hostname to the proper IP address.
+
+.. note::
+    Port mapping more specifically applies to bridge networks which creates explicit host/container communication. Port remapping is available regardless of the specific network the container is on.
+
+``none`` Network Driver
+-----------------------
+
+The ``none`` network driver will make the network completely isolated. Running the following container and viewing the network interfaces will show none available.
+
+.. code-block:: bash
+    :caption: Viewing the ``none`` network driver will have no network interface
+
+    # run a container without a network
+    docker run --rm -it --network none ubuntu:22.04
+
+    # //// START CONTAINER COMMANDS
+    # running in the container
+    ip a
+    # //// END CONTAINER COMMANDS
+
+``host`` Network Driver
+-----------------------
+
+The ``host`` network driver will make the container share the same network as the host machine.
+
+.. code-block:: bash
+    :caption: Viewing the ``host`` network driver will have the same network interface as the host machine
+
+    # run a container without a network
+    docker run --rm -it --network host ubuntu:22.04
+
+    # //// START CONTAINER COMMANDS
+    # running in the container
+    ip a
+    # //// END CONTAINER COMMANDS
+
+.. warning::
+    Containers that run services with port conflicts with the host will fail to run properly and exit.
+
+.. note::
+    Port remapping is not available on the host driver.
+
 Secrets
 =======
 
