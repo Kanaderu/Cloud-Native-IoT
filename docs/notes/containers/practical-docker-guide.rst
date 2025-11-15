@@ -267,10 +267,10 @@ The ``host`` network driver will make the container share the same network as th
 .. note::
     Port remapping is not available on the host driver.
 
-Secrets
-=======
-
-.. todo:: add secrets
+.. todo:: 
+    .. add secrets
+    Secrets
+    =======
 
 ##############
 Docker Compose
