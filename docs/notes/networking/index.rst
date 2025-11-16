@@ -8,7 +8,7 @@ Networking
 
    communication-patterns
 
-Networking allows for communication from one application to another which may exist on different machines. The Open Systems Interconnection (OSI) Model is commonly used to describe networking communication between applications. As data is transmitted through the layers of the OSI model, metadata is added to aid in the segmentation, transmission, and reconstruction of the data packets.
+Networking allows for communication from one application to another which may exist on different machines. The Open Systems Interconnection (OSI) Model is commonly used to describe networking communication between applications. As data is transmitted through the layers of the OSI model, metadata is added to aid in the segmentation, transmission, and reconstruction of the data packets. In networking, a process accesses a the network with a combination of a network IP adderss, a transport protocol, and a port number using a socket. The IP address identifies the machine and typically uses TCP or UDP as transport protocols to connect to a given file descriptor identified as a port number.
 
 ----------------------------------------
 Open Systems Interconnection (OSI) Model 
@@ -76,8 +76,16 @@ IPv6 addresses are 128-bit addresses (2\ :sup:`128`, ie :math:`[0 - 340,282,366,
     | Original: ``2001:0001:0002:0003:0004:0005:0006:0007``
     | Short: ``2001:1:2:3:4:5:6:7``
 
+-------------------
+Ports and Firewalls
+-------------------
 
------------------
+Ports are 16-bit unsigned integer values which ranges from 0-65535. Network critical port numbers less than 1024 are reserved and defined by the Internet Assigned Numbers Authority (IANA). Communication between processess poses security risks as machines are communicating between each other. The main mechanism on linux systems is through the use of a framework within the linux kernel, ``netfliter``, which allows for packet filtering, network address translation (NAT), and packet mangling.
+
+.. figure:: assets/fw-netfilter.svg
+    :alt: Netfiltering
+
+    Packet flow in Netfilter and General Networking
 
 Referneces
 ^^^^^^^^^^
