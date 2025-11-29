@@ -75,6 +75,7 @@ Using the example ``compose.yml`` file in Module-02, run the ``idf`` container a
    idf.py flash -p /dev/ttyUSB0
 
    # read the output of the serial device
+   # use Ctrl + ] to exit monitor view
    idf.py monitor -p /dev/ttyUSB0
 
 .. tabs::
@@ -214,6 +215,24 @@ Using the example ``compose.yml`` file in Module-02, run the ``idf`` container a
       *******************************************************************************
 
    Visit https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-guides/partition-tables.html to implement advanced features with partition tables such as OTA updates, setting bootloader space, and more.
+
+-----------------
+AWS M5Stack Core2
+-----------------
+
+The M5Sack Core2 has several additional components packaged onto the board and connected up to the ESP32 device. For ease of use, the manufacturer also released a Board Support Package (BSP) to easily interface with the existing components. THe components are ESP-IDF components which are C++ libraries that are imported and used like any other C++ libraries. The BSP is built upon several existing libraries which include LCD, touch, and audio controls for the M5Stack. The following generates a new project and imports the BSP for the M5Stack Core2.
+
+.. code-block:: bash
+   :caption: Create a project and import the M5Stack Core2 BSP
+
+   # create a new project to import the BSP
+   idf.py create-project m5core2-kitchen-sink
+
+   # navigate into newly created project
+   cd m5core2-kitchen-sink
+
+   # import the m5stack_core_2 bsp
+   idf.py add-dependency "espressif/m5stack_core_2^2.0.0"
 
 References
 ^^^^^^^^^^
