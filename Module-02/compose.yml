@@ -1,17 +1,17 @@
 services:
   idf:
-    # image: espressif/idf:v5.4.2
     image: espressif/idf:v5.5
     container_name: idf
     hostname: idf
+    privileged: true
     working_dir: /project
-    # run as root, default is uid 1000
-    user: 0:0
-    # user: 1000:1000
     environment:
       - HOME=/tmp
     volumes:
       - ./project:/project
     device:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/ttyUSB0:rw
+    # https://www.redhat.com/en/blog/files-devices-podman
+    group_add:
+      - keep-groups
     network_mode: host
