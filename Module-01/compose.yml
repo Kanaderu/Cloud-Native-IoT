@@ -6,6 +6,17 @@ services:
       - 1880:1880
     volumes:
       - node-red-data:/data
+  
+  wireshark:
+    image: lscr.io/linuxserver/wireshark:latest
+    container_name: wireshark
+    environment:
+      - TZ=America/New_York
+    ports:
+      - 3000:3000
+      - 3001:3001
+    cap_add:
+      - NET_ADMIN
 
 volumes:
   node-red-data:
